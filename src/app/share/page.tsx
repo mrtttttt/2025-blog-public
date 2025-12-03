@@ -7,6 +7,7 @@ import GridView from './grid-view'
 import CreateDialog from './components/create-dialog'
 import { pushShares } from './services/push-shares'
 import { useAuthStore } from '@/hooks/use-auth'
+import { useConfigStore } from '@/app/(home)/stores/config-store'
 import initialList from './list.json'
 import type { Share } from './components/share-card'
 import type { LogoItem } from './components/logo-upload-dialog'
@@ -21,65 +22,9 @@ export default function Page() {
 	const [logoItems, setLogoItems] = useState<Map<string, LogoItem>>(new Map())
 	const keyInputRef = useRef<HTMLInputElement>(null)
 
-	// NSFW内容功能的状态
-	const [showHidden, setShowHidden] = useState(false)
-	const [clickCount, setClickCount] = useState(0)
-	const clickTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
-	const longPressTimerRef = useRef<NodeJS.Timeout | undefined>(undefined)
-
 	const { isAuth, setPrivateKey } = useAuthStore()
-
-	// 清理定时器
-	useEffect(() => {
-		return () => {
-			if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current)
-			if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current)
-		}
-	}, [])
-
-	// 触发显示NSFW内容
-	const triggerShowHidden = () => {
-		if (!showHidden) {
-			setShowHidden(true)
-			toast.success('已显示NSFW内容')
-		}
-	}
-
-	// 处理点击计数
-	const handleTriggerClick = () => {
-		const newCount = clickCount + 1
-		setClickCount(newCount)
-
-		// 清除之前的超时
-		if (clickTimeoutRef.current) {
-			clearTimeout(clickTimeoutRef.current)
-		}
-
-		// 如果达到5次点击，显示NSFW内容
-		if (newCount >= 5) {
-			triggerShowHidden()
-			setClickCount(0)
-		} else {
-			// 3秒后重置计数器
-			clickTimeoutRef.current = setTimeout(() => {
-				setClickCount(0)
-			}, 3000)
-		}
-	}
-
-	// 处理长按开始
-	const handleLongPressStart = () => {
-		longPressTimerRef.current = setTimeout(() => {
-			triggerShowHidden()
-		}, 800) // 长按800ms触发
-	}
-
-	// 处理长按结束或取消
-	const handleLongPressEnd = () => {
-		if (longPressTimerRef.current) {
-			clearTimeout(longPressTimerRef.current)
-		}
-	}
+	const { siteContent } = useConfigStore()
+	const hideEditButton = siteContent.hideEditButton ?? false
 
 	const handleUpdate = (updatedShare: Share, oldShare: Share, logoItem?: LogoItem) => {
 		setShares(prev => prev.map(s => (s.url === oldShare.url ? updatedShare : s)))
@@ -161,6 +106,20 @@ export default function Page() {
 
 	const buttonText = isAuth ? '保存' : '导入密钥'
 
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (!isEditMode && (e.ctrlKey || e.metaKey) && e.key === ',') {
+				e.preventDefault()
+				setIsEditMode(true)
+			}
+		}
+
+		window.addEventListener('keydown', handleKeyDown)
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown)
+		}
+	}, [isEditMode])
+
 	return (
 		<>
 			<input
@@ -175,16 +134,7 @@ export default function Page() {
 				}}
 			/>
 
-			<GridView
-				shares={shares}
-				showHidden={showHidden}
-				isEditMode={isEditMode}
-				onUpdate={handleUpdate}
-				onDelete={handleDelete}
-				onTriggerClick={handleTriggerClick}
-				onLongPressStart={handleLongPressStart}
-				onLongPressEnd={handleLongPressEnd}
-			/>
+			<GridView shares={shares} isEditMode={isEditMode} onUpdate={handleUpdate} onDelete={handleDelete} />
 
 			<motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} className='absolute top-4 right-6 flex gap-3 max-sm:hidden'>
 				{isEditMode ? (
@@ -204,18 +154,20 @@ export default function Page() {
 							className='rounded-xl border bg-white/60 px-6 py-2 text-sm'>
 							添加
 						</motion.button>
-					<motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleSaveClick} disabled={isSaving} className='brand-btn px-6'>
-						{isSaving ? '保存中...' : buttonText}
-					</motion.button>
+						<motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleSaveClick} disabled={isSaving} className='brand-btn px-6'>
+							{isSaving ? '保存中...' : buttonText}
+						</motion.button>
 					</>
 				) : (
-					<motion.button
-						whileHover={{ scale: 1.05 }}
-						whileTap={{ scale: 0.95 }}
-						onClick={() => setIsEditMode(true)}
-						className='rounded-xl border bg-white/60 px-6 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
-						编辑
-					</motion.button>
+					!hideEditButton && (
+						<motion.button
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							onClick={() => setIsEditMode(true)}
+							className='bg-card rounded-xl border px-6 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
+							编辑
+						</motion.button>
+					)
 				)}
 			</motion.div>
 

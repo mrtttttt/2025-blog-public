@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { toast } from 'sonner'
 import { useMarkdownRender } from '@/hooks/use-markdown-render'
 import { pushAbout, type AboutData } from './services/push-about'
 import { useAuthStore } from '@/hooks/use-auth'
+import { useConfigStore } from '@/app/(home)/stores/config-store'
+import LikeButton from '@/components/like-button'
 import GithubSVG from '@/svgs/github.svg'
 import initialData from './list.json'
 
@@ -18,7 +20,9 @@ export default function Page() {
 	const keyInputRef = useRef<HTMLInputElement>(null)
 
 	const { isAuth, setPrivateKey } = useAuthStore()
+	const { siteContent } = useConfigStore()
 	const { content, loading } = useMarkdownRender(data.content)
+	const hideEditButton = siteContent.hideEditButton ?? false
 
 	const handleChoosePrivateKey = async (file: File) => {
 		try {
@@ -69,6 +73,21 @@ export default function Page() {
 	}
 
 	const buttonText = isAuth ? '保存' : '导入密钥'
+
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (!isEditMode && (e.ctrlKey || e.metaKey) && e.key === ',') {
+				e.preventDefault()
+				setIsEditMode(true)
+				setIsPreviewMode(false)
+			}
+		}
+
+		window.addEventListener('keydown', handleKeyDown)
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown)
+		}
+	}, [isEditMode])
 
 	return (
 		<>
@@ -150,15 +169,17 @@ export default function Page() {
 
 					<div className='mt-8 flex items-center justify-center gap-6'>
 						<motion.a
-							href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_OWNER}/${process.env.NEXT_PUBLIC_GITHUB_REPO}`}
+							href='https://github.com/YYsuni/2025-blog-public'
 							target='_blank'
 							rel='noreferrer'
 							initial={{ opacity: 0, scale: 0.6 }}
 							animate={{ opacity: 1, scale: 1 }}
 							transition={{ delay: 0 }}
-							className='flex h-[53px] w-[53px] items-center justify-center rounded-full border bg-card'>
+							className='bg-card flex h-[53px] w-[53px] items-center justify-center rounded-full border'>
 							<GithubSVG />
 						</motion.a>
+
+						<LikeButton slug='open-source' delay={0} />
 					</div>
 				</div>
 			</div>
@@ -187,13 +208,15 @@ export default function Page() {
 						</motion.button>
 					</>
 				) : (
-					<motion.button
-						whileHover={{ scale: 1.05 }}
-						whileTap={{ scale: 0.95 }}
-						onClick={handleEnterEditMode}
-						className='rounded-xl border bg-white/60 px-6 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
-						编辑
-					</motion.button>
+					!hideEditButton && (
+						<motion.button
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							onClick={handleEnterEditMode}
+							className='rounded-xl border bg-white/60 px-6 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
+							编辑
+						</motion.button>
+					)
 				)}
 			</motion.div>
 		</>

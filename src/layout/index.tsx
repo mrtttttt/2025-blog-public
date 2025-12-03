@@ -8,12 +8,18 @@ import { CircleCheckIcon, InfoIcon, Loader2Icon, OctagonXIcon, TriangleAlertIcon
 import { useSize, useSizeInit } from '@/hooks/use-size'
 import { useConfigStore } from '@/app/(home)/stores/config-store'
 import { ScrollTopButton } from '@/components/scroll-top-button'
+import MusicCard from '@/components/music-card'
 
 export default function Layout({ children }: PropsWithChildren) {
 	useCenterInit()
 	useSizeInit()
-	const { siteContent, regenerateKey } = useConfigStore()
+	const { cardStyles, siteContent, regenerateKey } = useConfigStore()
 	const { maxSM, init } = useSize()
+
+	const backgroundImages = (siteContent.backgroundImages ?? []) as Array<{ id: string; url: string }>
+	const currentBackgroundImageId = siteContent.currentBackgroundImageId
+	const currentBackgroundImage =
+		currentBackgroundImageId && currentBackgroundImageId.trim() ? backgroundImages.find(item => item.id === currentBackgroundImageId) : null
 
 	return (
 		<>
@@ -33,10 +39,24 @@ export default function Layout({ children }: PropsWithChildren) {
 					} as React.CSSProperties
 				}
 			/>
+			{currentBackgroundImage && (
+				<div
+					className='fixed inset-0 z-0 overflow-hidden'
+					style={{
+						backgroundImage: `url(${currentBackgroundImage.url})`,
+						backgroundSize: 'cover',
+						backgroundPosition: 'center',
+						backgroundRepeat: 'no-repeat'
+					}}
+				/>
+			)}
 			<BlurredBubblesBackground colors={siteContent.backgroundColors} regenerateKey={regenerateKey} />
+
 			<main className='relative z-10 h-full'>
 				{children}
 				<NavCard />
+
+				{!maxSM && cardStyles.musicCard?.enabled !== false && <MusicCard />}
 			</main>
 
 			{maxSM && init && <ScrollTopButton className='bg-brand/20 fixed right-6 bottom-8 z-50 shadow-md' />}

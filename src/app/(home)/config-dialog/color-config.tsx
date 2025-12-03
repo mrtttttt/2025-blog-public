@@ -44,18 +44,30 @@ const COLOR_PRESETS: ColorPreset[] = [
 		backgroundColors: ['#FCC841', '#DFEFFC', '#DEDE92', '#DE4331', '#FE9750', '#FCC841']
 	},
 	{
-		name: '夜晚',
+		name: '晴空',
 		theme: {
-			colorBrand: '#3a8fac',
+			colorBrand: '#2fcbe7',
+			colorPrimary: '#5B423F',
+			colorSecondary: '#8b7667',
+			colorBrandSecondary: '#eec25e',
+			colorBg: '#d4e8f3',
+			colorCard: '#ffffff99',
+		},
+		backgroundColors: ['#f7da3987', '#8fdbe9', '#fffef8']
+	},
+	{
+		name: '深夜',
+		theme: {
+			colorBrand: '#2a48f3',
 			colorPrimary: '#e6e8e8',
 			colorSecondary: '#acadae',
 			colorBrandSecondary: '#51d0b9',
-			colorBg: '#505050',
+			colorBg: '#0a051f',
 			colorBorder: '#8a8a8a5e',
-			colorCard: '#34343466',
-			colorArticle: '#333c'
+			colorCard: '#ffffff0e',
+			colorArticle: '#6f6f6f33'
 		},
-		backgroundColors: ['#669590', '#9ec3e7']
+		backgroundColors: ['#16007b']
 	}
 ]
 

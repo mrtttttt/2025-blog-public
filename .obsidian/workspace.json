@@ -1,0 +1,219 @@
+{
+  "main": {
+    "id": "aef7b5a452efbb84",
+    "type": "split",
+    "children": [
+      {
+        "id": "ca2f2c9430ff87f3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8d6826c50b2f4ac1",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3b2e086a774ad9d1",
+    "type": "split",
+    "children": [
+      {
+        "id": "1fd23df475b6ad51",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0c07c6b8364904a0",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "a9737e0f41e31572",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "3983a568916dc4a7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8ad118c243e2aa2d",
+    "type": "split",
+    "children": [
+      {
+        "id": "78d5de69d09f0f5b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0bf3a5ef954a3670",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "3d4e903bb234e310",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "82ae716bf6e874cb",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "5f0ad8a2bad3d652",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {},
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          },
+          {
+            "id": "bfc1552effc146ec",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:新建数据库": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "0c07c6b8364904a0",
+  "lastOpenFiles": [
+    "wrangler.toml",
+    "src/svgs/知乎.svg",
+    "src/svgs/小红书.svg",
+    "src/svgs/哔哩哔哩.svg",
+    "src/svgs/x.svg",
+    "src/svgs/weibo.svg",
+    "src/svgs/wechat.svg",
+    "src/svgs/tiktok.svg",
+    "src/svgs/tg.svg",
+    "src/svgs/qq.svg",
+    "src/svgs/instagram.svg",
+    "src/lib/aes256-util.ts",
+    "src/layout/backgrounds/snowfall.tsx",
+    "src/hooks/use-categories.ts",
+    "src/config/card-styles-default.json",
+    "src/components/select.tsx",
+    "src/components/music-card.tsx",
+    "src/app/wuthering-waves/page.tsx",
+    "src/app/wuthering-waves",
+    "src/app/snippets/services/push-snippets.ts",
+    "src/app/snippets/page.tsx",
+    "public/blogs/xmind-rewritten/index.md",
+    "public/blogs/webpack-react/index.md",
+    "public/blogs/wave-ball/index.md",
+    "public/blogs/water-like-distortion/index.md",
+    "public/blogs/watch-bloggers/index.md",
+    "public/blogs/video-split/index.md",
+    "public/blogs/texture-format/index.md",
+    "public/blogs/string-operation/index.md",
+    "public/blogs/startsWith-reg/index.md",
+    "public/blogs/sort-usage/index.md",
+    "public/blogs/solidity-note/index.md",
+    "public/blogs/solidity-more/index.md",
+    "public/blogs/seo-summary/index.md",
+    "public/blogs/sdk-fix/index.md",
+    "public/blogs/ruanyifeng/index.md",
+    "public/blogs/rewrite-blog-website/index.md",
+    "public/blogs/review/index.md",
+    "public/blogs/retro-grid/index.md",
+    "public/blogs/reshow-sketchfab-watermelon/index.md",
+    "public/blogs/rendering-spline/index.md",
+    "public/blogs/readme/index.md",
+    "public/blogs/pnpm-upgrade/index.md",
+    "public/blogs/pixel-motion/index.md",
+    "public/blogs/path-motion-methods/index.md",
+    "public/blogs/object-vs-map/index.md"
+  ]
+}
