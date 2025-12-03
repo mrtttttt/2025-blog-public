@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { toast } from 'sonner'
 import GridView from './grid-view'
@@ -21,7 +21,65 @@ export default function Page() {
 	const [logoItems, setLogoItems] = useState<Map<string, LogoItem>>(new Map())
 	const keyInputRef = useRef<HTMLInputElement>(null)
 
+	// NSFW内容功能的状态
+	const [showHidden, setShowHidden] = useState(false)
+	const [clickCount, setClickCount] = useState(0)
+	const clickTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
+	const longPressTimerRef = useRef<NodeJS.Timeout | undefined>(undefined)
+
 	const { isAuth, setPrivateKey } = useAuthStore()
+
+	// 清理定时器
+	useEffect(() => {
+		return () => {
+			if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current)
+			if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current)
+		}
+	}, [])
+
+	// 触发显示NSFW内容
+	const triggerShowHidden = () => {
+		if (!showHidden) {
+			setShowHidden(true)
+			toast.success('已显示NSFW内容')
+		}
+	}
+
+	// 处理点击计数
+	const handleTriggerClick = () => {
+		const newCount = clickCount + 1
+		setClickCount(newCount)
+
+		// 清除之前的超时
+		if (clickTimeoutRef.current) {
+			clearTimeout(clickTimeoutRef.current)
+		}
+
+		// 如果达到5次点击，显示NSFW内容
+		if (newCount >= 5) {
+			triggerShowHidden()
+			setClickCount(0)
+		} else {
+			// 3秒后重置计数器
+			clickTimeoutRef.current = setTimeout(() => {
+				setClickCount(0)
+			}, 3000)
+		}
+	}
+
+	// 处理长按开始
+	const handleLongPressStart = () => {
+		longPressTimerRef.current = setTimeout(() => {
+			triggerShowHidden()
+		}, 800) // 长按800ms触发
+	}
+
+	// 处理长按结束或取消
+	const handleLongPressEnd = () => {
+		if (longPressTimerRef.current) {
+			clearTimeout(longPressTimerRef.current)
+		}
+	}
 
 	const handleUpdate = (updatedShare: Share, oldShare: Share, logoItem?: LogoItem) => {
 		setShares(prev => prev.map(s => (s.url === oldShare.url ? updatedShare : s)))
@@ -117,7 +175,16 @@ export default function Page() {
 				}}
 			/>
 
-			<GridView shares={shares} isEditMode={isEditMode} onUpdate={handleUpdate} onDelete={handleDelete} />
+			<GridView
+				shares={shares}
+				showHidden={showHidden}
+				isEditMode={isEditMode}
+				onUpdate={handleUpdate}
+				onDelete={handleDelete}
+				onTriggerClick={handleTriggerClick}
+				onLongPressStart={handleLongPressStart}
+				onLongPressEnd={handleLongPressEnd}
+			/>
 
 			<motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} className='absolute top-4 right-6 flex gap-3 max-sm:hidden'>
 				{isEditMode ? (

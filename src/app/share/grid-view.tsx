@@ -7,21 +7,28 @@ import { ShareCard, type Share } from './components/share-card'
 
 interface GridViewProps {
 	shares: Share[]
+	showHidden?: boolean
 	isEditMode?: boolean
 	onUpdate?: (share: Share, oldShare: Share, logoItem?: LogoItem) => void
 	onDelete?: (share: Share) => void
+	onTriggerClick?: () => void
+	onLongPressStart?: () => void
+	onLongPressEnd?: () => void
 }
 
-export default function GridView({ shares, isEditMode = false, onUpdate, onDelete }: GridViewProps) {
+export default function GridView({ shares, showHidden = false, isEditMode = false, onUpdate, onDelete, onTriggerClick, onLongPressStart, onLongPressEnd }: GridViewProps) {
 	const [searchTerm, setSearchTerm] = useState('')
 	const [selectedTag, setSelectedTag] = useState<string>('all')
 
-	const allTags = Array.from(new Set(shares.flatMap(share => share.tags)))
+	// 过滤掉"NSFW"标签，不在标签列表中显示
+	const allTags = Array.from(new Set(shares.flatMap(share => share.tags))).filter(tag => tag !== 'NSFW')
 
 	const filteredShares = shares.filter(share => {
 		const matchesSearch = share.name.toLowerCase().includes(searchTerm.toLowerCase()) || share.description.toLowerCase().includes(searchTerm.toLowerCase())
 		const matchesTag = selectedTag === 'all' || share.tags.includes(selectedTag)
-		return matchesSearch && matchesTag
+		// 如果 showHidden 为 false，过滤掉包含"NSFW"标签的资源
+		const matchesHidden = showHidden || !share.tags.includes('NSFW')
+		return matchesSearch && matchesTag && matchesHidden
 	})
 
 	return (
@@ -37,7 +44,13 @@ export default function GridView({ shares, isEditMode = false, onUpdate, onDelet
 
 				<div className='flex flex-wrap justify-center gap-2'>
 					<button
-						onClick={() => setSelectedTag('all')}
+						onClick={() => {
+							setSelectedTag('all')
+							onTriggerClick?.()
+						}}
+						onTouchStart={onLongPressStart}
+						onTouchEnd={onLongPressEnd}
+						onTouchMove={onLongPressEnd}
 						className={`rounded-full px-4 py-1.5 text-sm transition-colors ${
 							selectedTag === 'all' ? 'bg-brand text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
 						}`}>
