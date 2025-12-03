@@ -7,7 +7,6 @@ import CalendarCard from '@/app/(home)/calendar-card'
 import MusicCard from '@/app/(home)/music-card'
 import AritcleCard from '@/app/(home)/aritcle-card'
 import WriteButtons from '@/app/(home)/write-buttons'
-import LikePosition from './like-position'
 import { useSize } from '@/hooks/use-size'
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
 			{/* {!maxSM && <MusicCard />} */}
 			<AritcleCard />
 			{!maxSM && <WriteButtons />}
-			{/* <LikePosition /> */}
 		</div>
 	)
 }
