@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { useWriteStore } from '../stores/write-store'
 import { INIT_DELAY } from '@/consts'
 import { useRef } from 'react'
+import { MarkdownHelp } from './markdown-help'
 
 const defaultText = 'text'
 
@@ -177,15 +178,22 @@ export function WriteEditor() {
 					onChange={e => updateForm({ slug: e.target.value })}
 				/>
 			</div>
-			<textarea
-				ref={textareaRef}
-				placeholder='Markdown 内容'
-				className='h-[650px] w-full flex-1 resize-none rounded-xl border bg-white/60 p-4 text-sm'
-				value={form.md}
-				onChange={e => updateForm({ md: e.target.value })}
-				onKeyDown={handleKeyDown}
-				onPaste={handlePaste}
-			/>
+			<div className='relative flex-1'>
+				{/* Markdown 语法提示 */}
+				<div className='absolute top-3 right-3 z-10'>
+					<MarkdownHelp />
+				</div>
+
+				<textarea
+					ref={textareaRef}
+					placeholder='Markdown 内容'
+					className='h-full w-full resize-none rounded-xl border bg-white/60 p-4 text-sm'
+					value={form.md}
+					onChange={e => updateForm({ md: e.target.value })}
+					onKeyDown={handleKeyDown}
+					onPaste={handlePaste}
+				/>
+			</div>
 		</motion.div>
 	)
 }
