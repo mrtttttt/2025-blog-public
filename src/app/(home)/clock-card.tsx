@@ -16,13 +16,14 @@ export default function ClockCard() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			setTime(new Date())
-		}, 5000)
+		}, 1000)
 
 		return () => clearInterval(timer)
 	}, [])
 
 	const hours = time.getHours().toString().padStart(2, '0')
 	const minutes = time.getMinutes().toString().padStart(2, '0')
+	const seconds = time.getSeconds().toString().padStart(2, '0')
 
 	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x + CARD_SPACING + hiCardStyles.width / 2
 	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y - styles.offset - styles.height
@@ -35,6 +36,9 @@ export default function ClockCard() {
 				<Colon />
 				<SevenSegmentDigit value={parseInt(minutes[0])} />
 				<SevenSegmentDigit value={parseInt(minutes[1])} />
+				<Colon />
+				<SevenSegmentDigit value={parseInt(seconds[0])} />
+				<SevenSegmentDigit value={parseInt(seconds[1])} />
 			</div>
 		</Card>
 	)
