@@ -8,5 +8,15 @@
 			"NSFW"
 		],
 		"stars": 3
+	},
+	{
+		"name": "免费维修手册",
+		"logo": "https://1997-blog.vercel.app/images/avatar.png",
+		"url": "https://zh.ifixit.com/",
+		"description": "查一些维修的东西，应该好用，没用过",
+		"tags": [
+			"手册"
+		],
+		"stars": 4
 	}
 ]
