@@ -167,8 +167,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0c07c6b8364904a0",
+  "active": "bfc1552effc146ec",
   "lastOpenFiles": [
+    "public/blogs/20260630-pecl/config.json",
+    "public/blogs/20260630-pecl/index.md",
+    "public/blogs/20260630-pecl",
+    "public/blogs/20260630-66s7/config.json",
+    "public/blogs/20260630-66s7/index.md",
+    "public/blogs/20260630-66s7",
     "public/blogs/20260630-7zio/config.json",
     "public/blogs/20260630-7zio/index.md",
     "public/blogs/20260630-7zio",
@@ -189,10 +195,6 @@
     "src/svgs/tg.svg",
     "src/svgs/qq.svg",
     "src/svgs/instagram.svg",
-    "src/lib/aes256-util.ts",
-    "src/layout/backgrounds/snowfall.tsx",
-    "src/hooks/use-categories.ts",
-    "src/config/card-styles-default.json",
     "public/blogs/xmind-rewritten/index.md",
     "public/blogs/webpack-react/index.md",
     "public/blogs/wave-ball/index.md",
@@ -212,8 +214,6 @@
     "public/blogs/review/index.md",
     "public/blogs/retro-grid/index.md",
     "public/blogs/reshow-sketchfab-watermelon/index.md",
-    "public/blogs/rendering-spline/index.md",
-    "public/blogs/readme/index.md",
-    "public/blogs/pnpm-upgrade/index.md"
+    "public/blogs/rendering-spline/index.md"
   ]
 }
