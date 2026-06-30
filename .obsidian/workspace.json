@@ -169,6 +169,15 @@
   },
   "active": "0c07c6b8364904a0",
   "lastOpenFiles": [
+    "public/blogs/20260630-7zio/config.json",
+    "public/blogs/20260630-7zio/index.md",
+    "public/blogs/20260630-7zio",
+    "public/blogs/20260630-r80t/config.json",
+    "public/blogs/20260630-r80t/index.md",
+    "public/blogs/20260630-r80t",
+    "public/blogs/20260630-dvpr/config.json",
+    "public/blogs/20260630-dvpr/index.md",
+    "public/blogs/20260630-dvpr",
     "wrangler.toml",
     "src/svgs/知乎.svg",
     "src/svgs/小红书.svg",
@@ -184,12 +193,6 @@
     "src/layout/backgrounds/snowfall.tsx",
     "src/hooks/use-categories.ts",
     "src/config/card-styles-default.json",
-    "src/components/select.tsx",
-    "src/components/music-card.tsx",
-    "src/app/wuthering-waves/page.tsx",
-    "src/app/wuthering-waves",
-    "src/app/snippets/services/push-snippets.ts",
-    "src/app/snippets/page.tsx",
     "public/blogs/xmind-rewritten/index.md",
     "public/blogs/webpack-react/index.md",
     "public/blogs/wave-ball/index.md",
@@ -211,9 +214,6 @@
     "public/blogs/reshow-sketchfab-watermelon/index.md",
     "public/blogs/rendering-spline/index.md",
     "public/blogs/readme/index.md",
-    "public/blogs/pnpm-upgrade/index.md",
-    "public/blogs/pixel-motion/index.md",
-    "public/blogs/path-motion-methods/index.md",
-    "public/blogs/object-vs-map/index.md"
+    "public/blogs/pnpm-upgrade/index.md"
   ]
 }
