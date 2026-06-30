@@ -169,6 +169,12 @@
   },
   "active": "bfc1552effc146ec",
   "lastOpenFiles": [
+    "public/blogs/20260630-7h2e/config.json",
+    "public/blogs/20260630-7h2e/index.md",
+    "public/blogs/20260630-7h2e",
+    "public/blogs/20260630-lhh8/config.json",
+    "public/blogs/20260630-lhh8/index.md",
+    "public/blogs/20260630-lhh8",
     "public/blogs/20260630-pecl/config.json",
     "public/blogs/20260630-pecl/index.md",
     "public/blogs/20260630-pecl",
@@ -180,11 +186,7 @@
     "public/blogs/20260630-7zio",
     "public/blogs/20260630-r80t/config.json",
     "public/blogs/20260630-r80t/index.md",
-    "public/blogs/20260630-r80t",
-    "public/blogs/20260630-dvpr/config.json",
     "public/blogs/20260630-dvpr/index.md",
-    "public/blogs/20260630-dvpr",
-    "wrangler.toml",
     "src/svgs/知乎.svg",
     "src/svgs/小红书.svg",
     "src/svgs/哔哩哔哩.svg",
@@ -212,8 +214,6 @@
     "public/blogs/ruanyifeng/index.md",
     "public/blogs/rewrite-blog-website/index.md",
     "public/blogs/review/index.md",
-    "public/blogs/retro-grid/index.md",
-    "public/blogs/reshow-sketchfab-watermelon/index.md",
-    "public/blogs/rendering-spline/index.md"
+    "public/blogs/retro-grid/index.md"
   ]
 }
