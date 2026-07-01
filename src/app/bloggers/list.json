@@ -279,5 +279,12 @@
 		"url": "https://haoqi.design/",
 		"description": "设计的很棒的个人网站",
 		"stars": 5
+	},
+	{
+		"name": "我没有三颗心脏",
+		"avatar": "blob:https://1997-blog.vercel.app/727f1321-219c-49ba-9c71-394ee3394831",
+		"url": "https://wmyskxz.cn/wiki/",
+		"description": "关于AI的介绍",
+		"stars": 4
 	}
 ]
