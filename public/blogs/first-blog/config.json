@@ -1,9 +1,9 @@
 {
-  "title": "我的第一篇博客",
+  "title": "乱七八糟",
   "tags": [],
   "date": "2026-01-09T08:00",
   "summary": "",
   "cover": "/blogs/first-blog/6a72dbc06f0f3bd6.png",
-  "hidden": true,
+  "hidden": false,
   "category": "随记"
 }
