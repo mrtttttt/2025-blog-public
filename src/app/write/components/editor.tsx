@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { useWriteStore } from '../stores/write-store'
 import { INIT_DELAY } from '@/consts'
 import { useRef } from 'react'
+import { MarkdownHelp } from './markdown-help'
 
 const defaultText = 'text'
 
@@ -177,9 +178,15 @@ export function WriteEditor() {
 					onChange={e => updateForm({ slug: e.target.value })}
 				/>
 			</div>
+			<div className='mb-2'>
+				<label htmlFor='markdown-content' className='text-sm font-medium'>
+					Markdown 正文
+				</label>
+			</div>
+			<MarkdownHelp />
 			<textarea
+				id='markdown-content'
 				ref={textareaRef}
-				placeholder='Markdown 内容'
 				className='bg-card h-[650px] w-full flex-1 resize-none rounded-xl border p-4 text-sm'
 				value={form.md}
 				onChange={e => updateForm({ md: e.target.value })}

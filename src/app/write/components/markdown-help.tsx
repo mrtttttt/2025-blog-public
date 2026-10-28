@@ -1,11 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
-
 export function MarkdownHelp() {
-	const [isOpen, setIsOpen] = useState(false)
-
 	const syntaxItems = [
 		{ label: '一级标题', syntax: '# 标题', example: '# 我的标题' },
 		{ label: '二级标题', syntax: '## 标题', example: '## 子标题' },
@@ -25,56 +20,23 @@ export function MarkdownHelp() {
 	]
 
 	return (
-		<div className='relative'>
-			{/* 问号图标 */}
-			<button
-				onMouseEnter={() => setIsOpen(true)}
-				onMouseLeave={() => setIsOpen(false)}
-				onClick={() => setIsOpen(!isOpen)}
-				className='flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 hover:text-gray-800'>
-				<svg className='h-4 w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-					<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' />
-				</svg>
-			</button>
-
-			{/* 提示浮层 */}
-			<AnimatePresence>
-				{isOpen && (
-					<motion.div
-						initial={{ opacity: 0, y: -10 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -10 }}
-						transition={{ duration: 0.2 }}
-						onMouseEnter={() => setIsOpen(true)}
-						onMouseLeave={() => setIsOpen(false)}
-						className='absolute top-10 right-0 z-50 w-[450px] rounded-xl border bg-white p-4 shadow-xl'>
-						<h3 className='mb-3 text-sm font-bold text-gray-800'>Markdown 语法速查</h3>
-
-						<div className='max-h-[500px] space-y-2 overflow-y-auto pr-2'>
-							{syntaxItems.map((item, index) => (
-								<div key={index} className='rounded-lg border border-gray-100 bg-gray-50 p-2.5'>
-									<div className='mb-1 text-xs font-semibold text-gray-700'>{item.label}</div>
-									<div className='mb-1.5 rounded bg-white px-2 py-1 font-mono text-xs text-gray-600'>{item.syntax}</div>
-									<div className='text-xs text-gray-500'>
-										<span className='font-semibold'>示例：</span>
-										<pre className='mt-1 whitespace-pre-wrap rounded bg-white px-2 py-1 font-mono text-xs'>{item.example}</pre>
-									</div>
-								</div>
-							))}
-						</div>
-
-						<div className='mt-3 border-t pt-3 text-xs text-gray-500'>
-							<div className='font-semibold mb-1'>快捷键：</div>
-							<div className='space-y-0.5'>
-								<div>• Ctrl/Cmd + B：加粗</div>
-								<div>• Ctrl/Cmd + I：斜体</div>
-								<div>• Ctrl/Cmd + K：链接</div>
-								<div>• Tab：缩进</div>
-							</div>
-						</div>
-					</motion.div>
-				)}
-			</AnimatePresence>
-		</div>
+		<details className='mb-3 rounded-xl border px-4 py-3'>
+			<summary className='cursor-pointer rounded text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-4'>
+				Markdown 语法提示
+				<span className='text-secondary ml-2 text-xs font-normal'>点击展开 / 收起</span>
+			</summary>
+			<p className='text-secondary mt-2 text-xs leading-5'>快捷键：Ctrl / Cmd + B 加粗，Ctrl / Cmd + I 斜体，Ctrl / Cmd + K 插入链接；支持直接粘贴图片。</p>
+			<div className='mt-3 grid max-h-[360px] grid-cols-1 gap-2 overflow-y-auto sm:grid-cols-2'>
+				{syntaxItems.map(item => (
+					<div key={item.label} className='min-w-0 rounded-lg border p-3'>
+						<div className='mb-2 text-xs font-medium'>{item.label}</div>
+						<pre className='text-secondary font-mono text-xs leading-5 break-all whitespace-pre-wrap'>
+							<code>{item.example}</code>
+						</pre>
+					</div>
+				))}
+			</div>
+			<p className='text-secondary mt-3 text-xs leading-5'>标题、列表和引用的标记后需要加空格；段落之间留一个空行。点击右上角「预览」查看效果。</p>
+		</details>
 	)
 }
