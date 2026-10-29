@@ -11,10 +11,14 @@
             "id": "8d6826c50b2f4ac1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "public/blogs/20261029-r4m6/index.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "index"
             }
           }
         ]
@@ -167,8 +171,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "bfc1552effc146ec",
+  "active": "8d6826c50b2f4ac1",
   "lastOpenFiles": [
+    "public/blogs/20261029-r4m6/config.json",
+    "public/blogs/20261029-r4m6/index.md",
+    "public/blogs/20261029-r4m6",
+    "public/blogs/mianshi-vue/index.md",
+    "public/blogs/mianshi-vue/config.json",
+    "public/blogs/mianshi-vue",
     "public/blogs/20260630-7h2e/config.json",
     "public/blogs/20260630-7h2e/index.md",
     "public/blogs/20260630-7h2e",
@@ -180,11 +190,7 @@
     "public/blogs/20260630-pecl",
     "public/blogs/20260630-66s7/config.json",
     "public/blogs/20260630-66s7/index.md",
-    "public/blogs/20260630-66s7",
-    "public/blogs/20260630-7zio/config.json",
     "public/blogs/20260630-7zio/index.md",
-    "public/blogs/20260630-7zio",
-    "public/blogs/20260630-r80t/config.json",
     "public/blogs/20260630-r80t/index.md",
     "public/blogs/20260630-dvpr/index.md",
     "src/svgs/知乎.svg",
@@ -212,8 +218,6 @@
     "public/blogs/seo-summary/index.md",
     "public/blogs/sdk-fix/index.md",
     "public/blogs/ruanyifeng/index.md",
-    "public/blogs/rewrite-blog-website/index.md",
-    "public/blogs/review/index.md",
-    "public/blogs/retro-grid/index.md"
+    "public/blogs/rewrite-blog-website/index.md"
   ]
 }
